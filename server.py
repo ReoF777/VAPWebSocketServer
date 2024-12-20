@@ -28,7 +28,7 @@ async def vap_module():
             data = await reader.readexactly(size)               # データを受信
             vap_result = util.conv_bytearray_2_vapresult(data)  # バイト列をVAPResultに変換
             
-            _vap_future = vap_result['p_future']                # p_futureデータを取得
+            _vap_future = vap_result['p_future'][1]                # 相手の終話予測結果を取得
             
             n += 1
             if n > 20:
@@ -57,7 +57,7 @@ async def vap_module():
         await writer.wait_closed()
         
 async def main():
-    server = serve(ini_connect, "localhost", 8765)
+    server = serve(ini_connect, "0.0.0.0", 8765)
     await asyncio.gather(server, vap_module())
 
 if __name__ == "__main__":
