@@ -36,7 +36,7 @@ async def vap_module():
                 print(_vap_future)
                 
             if _connected_clients:                                      # クライアントが接続中の場合
-                message = json.dumps({"vpa_future": f"{_vap_future}"})  # メッセージを作成
+                message = json.dumps({"vap_future": f"{_vap_future}"})  # メッセージを作成
                 disconnected_clients = []                               # 切断されたクライアントを記録するリスト
                 for websocket in _connected_clients:                    # 接続中のクライアントにメッセージを送信
                     try:
